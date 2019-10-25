@@ -1,10 +1,10 @@
 <?php 
 
-// namespace ClearLetters;
 
 class ClearLetters{
     private $city;
 
+    //Function which cleaning polish letters
     public function clear($city){
         $pl = array('Ę','Ó','Ą','Ś','Ł','Ż','Ź','Ć','Ń','ę','ó','ą','ś','ł','ż','ź','ć','ń',"\"",'&quot;',' ',',','!','–','/','\\');
         $notpl = array('E','O','A','S','L','Z','Z','C','N','e','o','a','s','l','z','z','c','n','','','_','_','','','','');

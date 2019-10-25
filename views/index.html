@@ -8,7 +8,7 @@
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
 
-  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,900&display=swap&subset=latin-ext" rel="stylesheet">
 
 </head>
@@ -21,11 +21,19 @@
 
         <div class="city-box">
             <p>New York</p>
-            <h2> {{ city }} </h2>
         </div>
 
         <div class="weather-box">
             <p>Pogoda</p>
+            <ul>
+                <li>Miasto: {{ city }} </li>
+                <li>Temperatura: {{ temp }} </li>
+                <li>Wiatr: {{ wiatr }} </li>
+                <li>Chmury: {{ chmury }} </li>
+                <li>Wilgotność powietrza: {{ humidity }} </li>
+                <li>Ciśnienie: {{ cisnienie }} </li>    
+            </ul>
+
         </div>
 
     </div>
