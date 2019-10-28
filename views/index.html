@@ -9,29 +9,37 @@
   <meta name="author" content="SitePoint">
 
   <link rel="stylesheet" href="../css/style.css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,900&display=swap&subset=latin-ext" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,500,700,900&display=swap&subset=latin-ext" rel="stylesheet">
+
 
 </head>
 
 <body>
+
+    <div class="search-box">
+        <form action="index.php" method="POST">
+            <input type="text" placeholder="Podaj miasto" name="city-name">
+            <button type="submit" name="city-name-btn">Sprawdź</button>
+        </form>
+    </div>
+
     <div class="container">
+
         <div class="date-box">
-            <p>March 13</p>
+            <p> {{ date }} </p>
         </div>
 
         <div class="city-box">
-            <p>New York</p>
+            <p> {{ city }} </p>
         </div>
 
         <div class="weather-box">
-            <p>Pogoda</p>
             <ul>
-                <li>Miasto: {{ city }} </li>
-                <li>Temperatura: {{ temp }} </li>
-                <li>Wiatr: {{ wiatr }} </li>
-                <li>Chmury: {{ chmury }} </li>
-                <li>Wilgotność powietrza: {{ humidity }} </li>
-                <li>Ciśnienie: {{ cisnienie }} </li>    
+                <li class="weather-value">{{ temp }}&degC </li>
+                <li class="weather-value other">Wiatr: <br> <p class="value-numbers"> {{ wind }} km/h </p> </li>
+                <li class="weather-value other">Zachmurzenie: <br> <p class="value-numbers"> {{ clouds }}% </p> </li>
+                <li class="weather-value other">Wilgotność: <br> <p class="value-numbers"> {{ humidity }}% </p> </li>
+                <li class="weather-value other">Ciśnienie: <br> <p class="value-numbers"> {{ airpressure }} hPa </p> </li>   
             </ul>
 
         </div>

@@ -1,35 +1,36 @@
 <?php
+session_start();
 
 require('../vendor/autoload.php');
 require_once('classes/weatherApi.php');
 require_once('classes/clearLetters.php');
 require_once('classes/currentDate.php');
+require_once('classes/revisedValue.php');
 
 
 //Object which cleaning of polish letters 
 $clearCityName = new ClearLetters();
 
 //Object which send a query to the openweathermap's API. Convert JSON to Object
-$weather= new WeatherApi('olesnica');
-if ($weather->getError() == null) {
-    
-}
-else{
-    echo "<br>chujowe miasto";
-    
-}
+$weather= new WeatherApi('wroclaw');
 
-//Object which get currnet date.
+//Object which gives currnet date.
 $currentDate = new CurrentDate();
-echo "<br>DATA:  " . $currentDate->getDate();
+$dateToShow = $currentDate->getDate();
 
 //Communicate the weather data from API -> Object -> variables below. 
-$miasto = $weather->getCity();
+$city = $weather->getCity();
 $temp = $weather->getTemp();
-$wiatr = $weather->getWind();
-$chmury = $weather->getClouds();
+$wind = $weather->getWind();
+$clouds = $weather->getClouds();
 $humidity = $weather->getHumidity();
-$cisnienie = $weather->getPressure();
+$airpressure = $weather->getPressure();
+
+//Object which convert deg between Celsius and Fahrenheit
+// $calculate = new revisedValue();
+
+
+
 
 //Twig tempalte engine
 $loader = new Twig_Loader_Filesystem('../views');
@@ -38,18 +39,12 @@ $twig = new Twig_Environment($loader);
 //Render HTML view with Twig. 
 echo $twig->render('index.html', array(
     'alert' => 'Błąd walidacji danych',
-    'city' => $miasto,
+    'city' => $city,
     'temp' => $temp,
-    'wiatr' => $wiatr,
-    'chmury' => $chmury,
+    'wind' => $wind,
+    'clouds' => $clouds,
     'humidity' => $humidity,
-    'cisnienie' => $cisnienie,
+    'airpressure' => $airpressure,
+    'date' => $dateToShow,
 ));
 
-
-/*TO DO
-* Obsługa zapytania do API, z miastem które nie istnieje. Tam dropi w JSON tablicę 404. Trzeba jebnąć if'a, który będzie to sprawdzał. 
-*
-*
-*
-*/

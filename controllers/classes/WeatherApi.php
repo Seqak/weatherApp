@@ -12,32 +12,6 @@ class WeatherApi{
 
     function __construct($city){
 
-        /////
-
-        // $urlstring = 'https://api.openweathermap.org/data/2.5/weather?q=' . $city . '&units=metric&appid=cf833ea4d9b83ed6d740d22700d79d1b';
-
-        // $urlstring = 'https://api.openweathermap.org/data/2.5/weather?q=wroclaw&units=metric&appid=cf833ea4d9b83ed6d740d22700d79d1b';
-
-        // $ch = curl_init($urlstring);
-
-        // curl_exec($ch);
-        // if (curl_errno($ch)) {
-        //     echo "Błąd: " . curl_errno($ch) . ": " . curl_error($ch);
-        // }
-        // else{
-        //     $jsonQuery = file_get_contents('https://api.openweathermap.org/data/2.5/weather?q=' . $city . '&units=metric&appid=cf833ea4d9b83ed6d740d22700d79d1b');
-
-        //     $json = json_decode($jsonQuery, true);
-    
-        //     $this->city = $json['name'];
-        //     $this->temperature = $json['main']['temp'];
-        //     $this->wind = $json['wind']['speed'];
-        //     $this->clouds = $json['clouds']['all'];
-        //     $this->humidity = $json['main']['humidity'];
-        //     $this->airPressure = $json['main']['pressure'];
-        // }
-
-        /////
         $jsonQuery = @file_get_contents('https://api.openweathermap.org/data/2.5/weather?q=' . $city . '&units=metric&appid=cf833ea4d9b83ed6d740d22700d79d1b');
 
         $json = json_decode($jsonQuery, true);
@@ -56,7 +30,7 @@ class WeatherApi{
         else{
 
             echo "Nie znaleziono miasta: " . $city;
-            $this->error = 'kupa';
+            $this->error = 'Nie znaleziono miasta';
         }
     }
 
@@ -65,11 +39,12 @@ class WeatherApi{
     }
 
     public function getTemp(){
-        return $this->temperature;
+        return round($this->temperature);
     }
 
     public function getWind(){
-        return $this->wind;
+        
+        return round(($this->wind * 3.6));
     }
 
     public function getClouds(){

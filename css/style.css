@@ -2,15 +2,92 @@ body{
     background-image: url('bg3.jpg');
     margin: 0;
     padding: 0;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .container{
     display: flex;
     flex-direction: column;
-    width: 1000px;
-    background-color: rgba(255, 255, 255, 0.3);
+    width: 950px;
     position: absolute;
-    bottom: 300px;
+    bottom: 200px;
+    box-sizing: border-box;   
 }
 
+.container p{
+    margin: 0px;
+}
+
+.date-box{
+    color: #edd642;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1px;
+    padding-left: 50px;
+}
+
+.city-box{
+    font-weight: 200;
+    color: beige;
+    font-size: 72px;
+    margin-top: 5px;
+    padding-left: 46px;
+    margin-bottom: 60px;
+}
+
+.weather-box{
+    background-color: rgba(255, 255, 255, 0.3);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.weather-box li{
+    list-style-type:none;
+}
+
+.weather-value{
+    float: left;
+    height: 130px;
+    box-sizing: border-box;
+}
+
+.weather-box li:nth-child(1){
+    font-size: 92px;
+    font-weight: bold;
+    color: beige;
+    text-align: center;
+    margin-left: 8px;
+    margin-right: 70px;
+}
+
+.other{
+    color: beige;
+    width: 150px;
+    height: 80px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 15px;
+    font-weight: 200;
+}
+
+.other:last-child{
+    border-right: none;
+}
+
+.other p{
+    margin: 0px; 
+    margin-top: 5px;
+}
+
+.value-numbers{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.search-box{
+    position: absolute;
+    right: 50px;
+    top: 50px;
+}
