@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+
+  <title>Weather app</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,500,700,900&display=swap&subset=latin-ext" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <div class="landing-search-box">
+        <form action="index.php" method="POST">
+            <input type="text" placeholder="Podaj nazwę miasta" name="city-name" class="landing-input">
+            <button type="submit" name="city-name-btn" class="landing-btn">Szukaj</button>
+        </form>
+    </div>
+
+    <div class="alert-text">
+        <!-- {{ alert }} -->
+    </div>
+    
+  <script src="js/main.js"></script>
+</body>
+</html>

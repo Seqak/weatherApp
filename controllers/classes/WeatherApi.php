@@ -1,6 +1,8 @@
 <?php
 
 
+
+
 class WeatherApi{
     private $city;
     private $temperature;
@@ -8,7 +10,7 @@ class WeatherApi{
     private $clouds;
     private $humidity;
     private $airPressure;
-    private $error;
+    private $error = 'Nie znaleziono miasta';
 
     function __construct($city){
 
@@ -28,9 +30,9 @@ class WeatherApi{
             $this->airPressure = $json['main']['pressure'];
         }
         else{
-
-            echo "Nie znaleziono miasta: " . $city;
-            $this->error = 'Nie znaleziono miasta';
+            
+            header('Location: index.php');
+        //  echo "Nie ma takiego miasta";
         }
     }
 

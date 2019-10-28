@@ -8,11 +8,26 @@ require_once('classes/currentDate.php');
 require_once('classes/revisedValue.php');
 
 
+
+// $cityname = htmlspecialchars($_POST['city-name']); 
+
 //Object which cleaning of polish letters 
+// $clearCityName = new ClearLetters();
+// $clearCityName->clear($cityname);
+// $cityname = $clearCityName->getCity();
+
+if (isset($_POST['city-name'])) {
+    
+$cityname = htmlspecialchars($_POST['city-name']); 
+
+// Object which cleaning of polish letters 
 $clearCityName = new ClearLetters();
+$clearCityName->clear($cityname);
+$cityname = $clearCityName->getCity();
+
 
 //Object which send a query to the openweathermap's API. Convert JSON to Object
-$weather= new WeatherApi('wroclaw');
+$weather = new WeatherApi($cityname);
 
 //Object which gives currnet date.
 $currentDate = new CurrentDate();
@@ -26,10 +41,9 @@ $clouds = $weather->getClouds();
 $humidity = $weather->getHumidity();
 $airpressure = $weather->getPressure();
 
+
 //Object which convert deg between Celsius and Fahrenheit
 // $calculate = new revisedValue();
-
-
 
 
 //Twig tempalte engine
@@ -48,3 +62,22 @@ echo $twig->render('index.html', array(
     'date' => $dateToShow,
 ));
 
+}
+else{
+
+$loader = new Twig_Loader_Filesystem('../views');
+$twig = new Twig_Environment($loader);
+
+//Render HTML view with Twig. 
+echo $twig->render('landing.html', array(
+    'alert' => 'Znajdź miasto ->',
+    
+));
+}
+
+/*
+*Trzeba napisać widok startowy, kiedy nie ma jeszcze podanego miasta
+*echo error o złej nazwie miasta trzeba wysłać funckją header i używając GET
+*
+*
+*/
