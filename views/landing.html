@@ -16,16 +16,24 @@
 
 <body>
 
-    <div class="landing-search-box">
-        <form action="index.php" method="POST">
-            <input type="text" placeholder="Podaj nazwę miasta" name="city-name" class="landing-input">
-            <button type="submit" name="city-name-btn" class="landing-btn">Szukaj</button>
-        </form>
-    </div>
 
-    <div class="alert-text">
-        <!-- {{ alert }} -->
-    </div>
+  <div class="landing-container">
+      <div class="landing-search-box">
+          <form action="index.php" method="POST">
+              <input type="text" placeholder="Podaj nazwę miasta" name="city-name" class="landing-input">
+              <button type="submit" name="city-name-btn" class="landing-btn">Szukaj</button>
+          </form>
+      </div>
+
+      <div class="alert-text">
+          {% if not alert %}
+            <p class="hello-alert"> {{ hello }} </p>
+          {% else %}
+            <p class="hello-alert"> {{ hello }} </p>
+            <p class="wrong-alert"> {{ alert }} </p>
+          {% endif %}
+      </div>
+  </div>
     
   <script src="js/main.js"></script>
 </body>
