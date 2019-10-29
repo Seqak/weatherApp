@@ -6,15 +6,8 @@ require_once('classes/weatherApi.php');
 require_once('classes/clearLetters.php');
 require_once('classes/currentDate.php');
 require_once('classes/revisedValue.php');
+require_once('classes/monthTranslate.php');
 
-
-
-// $cityname = htmlspecialchars($_POST['city-name']); 
-
-//Object which cleaning of polish letters 
-// $clearCityName = new ClearLetters();
-// $clearCityName->clear($cityname);
-// $cityname = $clearCityName->getCity();
 
 if (isset($_POST['city-name'])) {
     
@@ -31,7 +24,14 @@ $weather = new WeatherApi($cityname);
 
 //Object which gives currnet date.
 $currentDate = new CurrentDate();
-$dateToShow = $currentDate->getDate();
+$day = $currentDate->getDay();
+$month = $currentDate->getMonth();
+
+//Object translating the name of the months
+$translateMth = new MonthTranslate();
+$month = $translateMth->translateMonth($month);
+
+$dateToShow = $currentDate->getDate($month);
 
 //Communicate the weather data from API -> Object -> variables below. 
 $city = $weather->getCity();
@@ -64,20 +64,27 @@ echo $twig->render('index.html', array(
 
 }
 else{
+    if (isset($_GET['erro'])) {
+    $erro = "Nie znaleziono podanego miasta";
 
-$loader = new Twig_Loader_Filesystem('../views');
-$twig = new Twig_Environment($loader);
+    $loader = new Twig_Loader_Filesystem('../views');
+    $twig = new Twig_Environment($loader);
 
-//Render HTML view with Twig. 
-echo $twig->render('landing.html', array(
-    'alert' => 'Znajdź miasto ->',
-    
-));
+    //Render HTML view with Twig. 
+    echo $twig->render('landing.html', array(
+        'emptyAlert' => $erro,
+        'alert' => $erro,
+        'hello' => "Sprawdź pogodę w swoim mieście!",
+        ));
+    }
+    else{
+        $loader = new Twig_Loader_Filesystem('../views');
+        $twig = new Twig_Environment($loader);
+
+        //Render HTML view with Twig. 
+        echo $twig->render('landing.html', array(
+            'hello' => "Sprawdź pogodę w swoim mieście!",
+        ));
+    }
 }
 
-/*
-*Trzeba napisać widok startowy, kiedy nie ma jeszcze podanego miasta
-*echo error o złej nazwie miasta trzeba wysłać funckją header i używając GET
-*
-*
-*/
