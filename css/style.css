@@ -101,10 +101,21 @@ body{
 
 /* landing.html */
 
+.landing-container{
+    position: absolute;
+    width: 700px;
+    height: 300px;
+    background-color:rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+    left: 32%;
+    top: 350px;
+    border-radius: 2px;
+}
+
 .landing-search-box{
     position: absolute;
-    left: 40%;
-    top: 400px;
+    left: 14%;
+    top: 170px;
 }
 
 .landing-input{
@@ -135,4 +146,31 @@ body{
     background-color: #e6cf3e;
 }
 
+.hello-alert{
+    font-size: 36px;
+    text-align: center;
+    padding-left: 30px;
+    padding-top: 40px;
+}
+
+.wrong-alert{
+    font-size: 14px;
+    color: #999;
+    position: absolute;
+    top: 220px;
+    left: 95px;
+    letter-spacing: 0.6px;
+}
+
 /* landing.html - end */
+
+.index-input{
+    width: 200px;
+    height: 30px;
+}
+
+.index-btn{
+    width: 70px;
+    height: 30px;
+}
+
