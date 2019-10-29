@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 class WeatherApi{
     private $city;
     private $temperature;
@@ -10,12 +7,10 @@ class WeatherApi{
     private $clouds;
     private $humidity;
     private $airPressure;
-    private $error = 'Nie znaleziono miasta';
 
     function __construct($city){
 
         $jsonQuery = @file_get_contents('https://api.openweathermap.org/data/2.5/weather?q=' . $city . '&units=metric&appid=cf833ea4d9b83ed6d740d22700d79d1b');
-
         $json = json_decode($jsonQuery, true);
         
         //Temporary solution for wrong city name serve. Problem with err 60, err 77 HTTP of file_get_contents() method
@@ -30,12 +25,12 @@ class WeatherApi{
             $this->airPressure = $json['main']['pressure'];
         }
         else{
-            
-            header('Location: index.php');
-        //  echo "Nie ma takiego miasta";
+
+           header('Location: index.php?erro=true');
         }
     }
 
+    //Getters and setters
     public function getCity(){
         return $this->city;
     }
@@ -60,11 +55,6 @@ class WeatherApi{
     public function getPressure(){
         return $this->airPressure;
     }
-
-    public function getError(){
-        return $this->error;
-    }
-
 }
 
 
